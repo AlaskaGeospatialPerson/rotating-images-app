@@ -1,59 +1,34 @@
 <!DOCTYPE html>
 
 <html>
-
 <head>
-
     <title>Rotating Images</title>
-
     <style>
-
         body { margin: 0; overflow: hidden; }
-
         img { width: 100%; height: auto; }
-
     </style>
-
     <script>
-
         const images = [
-
             "https://raw.githubusercontent.com/AlaskaGeospatialPerson/rotating-images-app/refs/heads/main/Fire.jpg",
-            
             "https://raw.githubusercontent.com/AlaskaGeospatialPerson/rotating-images-app/refs/heads/main/Ice.jpeg",
-
             "https://raw.githubusercontent.com/AlaskaGeospatialPerson/rotating-images-app/refs/heads/main/Plan.jpg"
-
         ];
-
+        
         let index = 0;
 
- 
-
         function rotateImages() {
-
             console.log("Current image URL:", images[index]);
-
             document.getElementById("rotatingImage").src = images[index];
-
             index = (index + 1) % images.length;
-
         }
 
- 
-
-        setInterval(rotateImages, 10000); // Change every 10 seconds
-
-        window.onload = rotateImages; // Load the first image immediately
-
+        window.onload = function() {
+            document.getElementById("rotatingImage").src = images[0]; // Load first image
+            setInterval(rotateImages, 5000); // Rotate images every 5 seconds
+        };
     </script>
-
 </head>
-
 <body>
-
     <img id="rotatingImage" src="" alt="Rotating Image" />
-
 </body>
-
 </html>
