@@ -32,6 +32,8 @@
 
         function rotateImages() {
 
+            console.log("Current image URL:", images[index]);
+
             document.getElementById("rotatingImage").src = images[index];
 
             index = (index + 1) % images.length;
@@ -40,7 +42,7 @@
 
  
 
-        setInterval(rotateImages, 5000); // Change every 5 seconds
+        setInterval(rotateImages, 10000); // Change every 10 seconds
 
         window.onload = rotateImages; // Load the first image immediately
 
