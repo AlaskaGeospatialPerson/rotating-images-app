@@ -4,14 +4,23 @@
 <head>
     <title>Rotating Images</title>
     <style>
-        body { margin: 0; overflow: hidden; }
-        img { 
-            width: 100vw;       /* Viewport width */
-            height: 100vh;      /* Viewport height */
-            object-fit: contain; /* Scale image to fit without cropping */
-            display: block;      /* Remove extra space around the image */
-        }
-    </style>
+    body { 
+        margin: 0; 
+        overflow: hidden; 
+        display: flex; 
+        justify-content: center; /* Center image horizontally */
+        align-items: center;     /* Center image vertically */
+        height: 100vh;           /* Full viewport height */
+        background-color: black; /* Optional: for a clean background */
+    }
+
+    img { 
+        max-width: 100%;  /* Scale down to viewport width */
+        max-height: 100%; /* Scale down to viewport height */
+        object-fit: contain; /* Ensure full image visibility */
+    }
+</style>
+
     <script>
         const images = [
             "https://akdot.maps.arcgis.com/sharing/rest/content/items/735f79c8f65a4a1c82fadd275ce8cb83/data",
