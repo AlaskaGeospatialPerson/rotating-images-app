@@ -24,20 +24,27 @@
             "https://akdot.maps.arcgis.com/sharing/rest/content/items/735f79c8f65a4a1c82fadd275ce8cb83/data",
             "https://akdot.maps.arcgis.com/sharing/rest/content/items/6ce0af1cbce04a47994e2496295e8581/data"
         ];
-        
+
         let index = 0;
 
         function rotateImages() {
-            console.log("Current image URL:", images[index]);
-            // Force reload to ensure full display duration
-            const imageUrl = images[index] + "?t=" + new Date().getTime();
-            document.getElementById("rotatingImage").src = imageUrl;
+            const imgElement = document.getElementById("rotatingImage");
+
+            // Set new image source
+            imgElement.src = images[index];
+            console.log("Swapping to image:", images[index]);
+
+            // Wait for the image to fully load before triggering the next swap
+            imgElement.onload = () => {
+                setTimeout(rotateImages, 10000); // Schedule the next image swap after 10 seconds
+            };
+
+            // Update the index for the next image
             index = (index + 1) % images.length;
         }
 
         window.onload = function() {
-            document.getElementById("rotatingImage").src = images[0]; // Load the first image
-            setInterval(rotateImages, 20000); // Rotate images every 20 seconds
+            rotateImages(); // Start the rotation
         };
     </script>
 </head>
