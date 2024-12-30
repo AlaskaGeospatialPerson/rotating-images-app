@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rotating Images</title>
+    <style>
+    body { 
+        margin: 0; 
+        overflow: hidden; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        height: 100vh; 
+        background-color: black;
+    }
+    img { 
+        max-width: 100%; 
+        max-height: 100%; 
+        object-fit: contain; 
+    }
+    </style>
+
+    <script>
+        const images = [
+            "https://akdot.maps.arcgis.com/sharing/rest/content/items/735f79c8f65a4a1c82fadd275ce8cb83/data",
+            "https://akdot.maps.arcgis.com/sharing/rest/content/items/1c28787ac5cc4cc6b0d547f7148727a6/data"
+        ];
+
+        let index = 0;
+
+        function rotateImages() {
+            const imgElement = document.getElementById("rotatingImage");
+
+            // Set new image source
+            imgElement.src = images[index];
+            console.log("Swapping to image:", images[index]);
+
+            // Wait for the image to fully load before triggering the next swap
+            imgElement.onload = () => {
+                setTimeout(rotateImages, 10000); // Schedule the next image swap after 10 seconds
+            };
+
+            // Update the index for the next image
+            index = (index + 1) % images.length;
+        }
+
+        window.onload = function() {
+            rotateImages(); // Start the rotation
+        };
+    </script>
+</head>
+<body>
+    <img id="rotatingImage" src="" alt="Rotating Image" />
+</body>
+</html>
